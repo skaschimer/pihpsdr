@@ -703,7 +703,7 @@ static void new_protocol_high_priority() {
           }
         }
 
-	rxFrequency+=calibration;
+	rxFrequency=freq_with_calibration(rxFrequency);
 
         phase=(long)((4294967296.0*(double)rxFrequency)/122880000.0);
         high_priority_buffer_to_radio[ 9]=phase>>24;
@@ -736,7 +736,7 @@ static void new_protocol_high_priority() {
             }
           }
 
-	  rxFrequency+=calibration;
+	  rxFrequency=freq_with_calibration(rxFrequency);
 
 	  phase=(long)((4294967296.0*(double)rxFrequency)/122880000.0);
 	  high_priority_buffer_to_radio[9+(ddc*4)]=phase>>24;
@@ -764,7 +764,7 @@ static void new_protocol_high_priority() {
       }
     }
 
-    txFrequency+=calibration;
+    txFrequency=freq_with_calibration(txFrequency);
 
     phase=(long)((4294967296.0*(double)txFrequency)/122880000.0);
 
