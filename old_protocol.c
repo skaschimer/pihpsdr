@@ -773,7 +773,7 @@ static long long channel_freq(int chan) {
       }
     }
   }
-  freq+=calibration;
+  freq=freq_with_calibration(freq);
   return freq;
 }
 

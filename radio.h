@@ -20,6 +20,8 @@
 #ifndef _RADIO_H
 #define _RADIO_H
 
+#include <math.h>
+
 #include "adc.h"
 #include "dac.h"
 #include "discovered.h"
@@ -74,7 +76,11 @@ extern gboolean radio_is_remote;
 
 extern GtkWidget *fixed;
 
-extern long long calibration;
+extern double calibration_ppm;
+
+static inline long long freq_with_calibration(long long freq) {
+  return freq + (long long)round((double)freq * calibration_ppm / 1e6);
+}
 
 extern char property_path[];
 
