@@ -1855,7 +1855,9 @@ static void process_high_priority(unsigned char *buffer) {
     }
 
     if(previous_ptt!=local_ptt) {
-      g_idle_add(ext_mox_update,GINT_TO_POINTER(local_ptt));
+      if(local_ptt || (!mox && !tune)) {
+        g_idle_add(ext_mox_update,GINT_TO_POINTER(local_ptt));
+      }
     }
 }
 

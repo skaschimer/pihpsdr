@@ -879,7 +879,9 @@ static void process_ozy_input_buffer(unsigned char  *buffer) {
     }
 
     if(previous_ptt!=local_ptt) {
-      g_idle_add(ext_mox_update,(gpointer)(long)(local_ptt));
+      if(local_ptt || (!mox && !tune)) {
+        g_idle_add(ext_mox_update,(gpointer)(long)(local_ptt));
+      }
     }
 
     switch((control_in[0]>>3)&0x1F) {
